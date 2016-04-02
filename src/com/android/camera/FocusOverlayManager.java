@@ -145,7 +145,7 @@ public class FocusOverlayManager {
         setParameters(parameters);
         mListener = listener;
         setMirror(mirror);
-        mFocusRing = focusRing;
+        setFocusRing(focusRing);
         mDispSize = new Point();
         activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);
         Context context = CameraApp.getContext();
@@ -157,6 +157,9 @@ public class FocusOverlayManager {
 
     public void setFocusRing(FocusRing focusRing) {
         mFocusRing = focusRing;
+        if (focusRing != null) {
+            focusRing.configurePreviewDimensions(CameraUtil.rectToRectF(mPreviewRect));
+        }
     }
 
     public void setParameters(Parameters parameters) {
@@ -182,6 +185,9 @@ public class FocusOverlayManager {
     public void setPreviewRect(Rect previewRect) {
         if (!mPreviewRect.equals(previewRect)) {
             mPreviewRect.set(previewRect);
+            if (mFocusRing != null) {
+                mFocusRing.configurePreviewDimensions(CameraUtil.rectToRectF(previewRect));
+            }
             resetCoordinateTransformer();
             mInitialized = true;
         }
