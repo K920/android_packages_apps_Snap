@@ -145,7 +145,6 @@ public class FocusOverlayManager {
         setParameters(parameters);
         mListener = listener;
         setMirror(mirror);
-        setFocusRing(focusRing);
         mDispSize = new Point();
         activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);
         Context context = CameraApp.getContext();
@@ -153,13 +152,22 @@ public class FocusOverlayManager {
             context.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
         mTopMargin =
             context.getResources().getDimensionPixelSize(R.dimen.preview_top_margin);
+        setFocusRing(focusRing);
+    }
+
+    private void setFocusRingDim(FocusRing focusRing) {
+        if (focusRing == null || mDispSize == null) {
+            return;
+        }
+
+        RectF focusDim =
+            new RectF(0, mTopMargin, mDispSize.x, mDispSize.y - mBottomMargin);
+        focusRing.configurePreviewDimensions(focusDim);
     }
 
     public void setFocusRing(FocusRing focusRing) {
         mFocusRing = focusRing;
-        if (focusRing != null) {
-            focusRing.configurePreviewDimensions(CameraUtil.rectToRectF(mPreviewRect));
-        }
+        setFocusRingDim(focusRing);
     }
 
     public void setParameters(Parameters parameters) {
@@ -185,9 +193,6 @@ public class FocusOverlayManager {
     public void setPreviewRect(Rect previewRect) {
         if (!mPreviewRect.equals(previewRect)) {
             mPreviewRect.set(previewRect);
-            if (mFocusRing != null) {
-                mFocusRing.configurePreviewDimensions(CameraUtil.rectToRectF(previewRect));
-            }
             resetCoordinateTransformer();
             mInitialized = true;
         }
@@ -398,7 +403,7 @@ public class FocusOverlayManager {
                     mState == STATE_SUCCESS || mState == STATE_FAIL)) {
             cancelAutoFocus();
         }
-        if (mPreviewRect.isEmpty() || !mPreviewRect.contains(x, y) ||
+        if (mPreviewRect.isEmpty() ||
             (y > (mDispSize.y - mBottomMargin) || y < mTopMargin)) {
             return;
         }
