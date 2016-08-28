@@ -184,7 +184,7 @@ public class CameraActivity extends Activity
 
     // Pie Setting Menu enabled
     private static boolean PIE_MENU_ENABLED = false;
-    private boolean mDeveloperMenuEnabled = false;
+    private boolean mDeveloperMenuEnabled = true;
 
     /** This data adapter is used by FilmStripView. */
     private LocalDataAdapter mDataAdapter;
