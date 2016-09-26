@@ -1620,7 +1620,7 @@ public class CameraActivity extends Activity
                 mLocalVideosObserver);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        mDeveloperMenuEnabled = prefs.getBoolean(CameraSettings.KEY_DEVELOPER_MENU, false);
+        //mDeveloperMenuEnabled = prefs.getBoolean(CameraSettings.KEY_DEVELOPER_MENU, false);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
