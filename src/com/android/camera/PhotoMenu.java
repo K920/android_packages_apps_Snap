@@ -212,8 +212,8 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_AE_BRACKET_HDR,
                 CameraSettings.KEY_MANUAL_EXPOSURE,
                 CameraSettings.KEY_MANUAL_WB,
-                CameraSettings.KEY_MANUAL_FOCUS,
-                SettingsManager.KEY_CAMERA2
+                CameraSettings.KEY_MANUAL_FOCUS
+                //SettingsManager.KEY_CAMERA2
         };
 
         initSwitchItem(CameraSettings.KEY_CAMERA_ID, mFrontBackSwitcher);
