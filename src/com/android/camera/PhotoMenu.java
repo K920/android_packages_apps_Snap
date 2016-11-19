@@ -247,8 +247,8 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_MANUAL_WB,
                 CameraSettings.KEY_MANUAL_FOCUS,
                 CameraSettings.KEY_SELFIE_MIRROR,
-                CameraSettings.KEY_SHUTTER_SOUND,
-                SettingsManager.KEY_CAMERA2
+                CameraSettings.KEY_SHUTTER_SOUND
+                //SettingsManager.KEY_CAMERA2
         };
 
         initSwitchItem(CameraSettings.KEY_CAMERA_ID, mFrontBackSwitcher);
